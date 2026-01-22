@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio Ciberpunk - Karen Annelys</title>
+    <!-- Bootstrap CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* Estilos base para modo dark (default) */
+        body {
+            background-color: #0a0a0a; /* Negro profundo */
+            color: #ffffff; /* Blanco brillante */
+            font-family: 'Arial', sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        body.light-mode {
+            background-color: #f0f0f0; /* Gris claro */
+            color: #000000; /* Negro */
+        }
+        .navbar {
+            background-color: #1a1a1a !important;
+            border-bottom: 2px solid #00ffff; /* Cian neon */
+        }
+        body.light-mode .navbar {
+            background-color: #ffffff !important;
+            border-bottom: 2px solid #0000ff; /* Azul oscuro */
+        }
+        .navbar-brand, .nav-link {
+            color: #00ffff !important; /* Cian neon */
+        }
+        body.light-mode .navbar-brand, body.light-mode .nav-link {
+            color: #0000ff !important; /* Azul oscuro */
+        }
+        .btn-toggle-mode {
+            background-color: #00ffff;
+            color: #000000;
+        }
+        body.light-mode .btn-toggle-mode {
+            background-color: #0000ff;
+            color: #ffffff;
+        }
+        /* Hero section */
+        .hero {
+            background: linear-gradient(to bottom, #0a0a0a, #1a1a1a);
+            padding: 100px 0;
+            text-align: center;
+        }
+        body.light-mode .hero {
+            background: linear-gradient(to bottom, #f0f0f0, #d0d0d0);
+        }
+        .hero img {
+            border: 3px solid #00ffff;
+            border-radius: 50%;
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            box-shadow: 0 0 20px #00ffff;
+        }
+        body.light-mode .hero img {
+            border: 3px solid #0000ff;
+            box-shadow: 0 0 20px #0000ff;
+        }
+        /* Stack Tecnológico */
+        .stack-card {
+            background-color: #1a1a1a;
+            border: 1px solid #ffff00; /* Amarillo neon */
+            box-shadow: 0 0 10px #ffff00;
+            color: #ffffff;
+        }
+        body.light-mode .stack-card {
+            background-color: #ffffff;
+            border: 1px solid #ff0000; /* Rojo oscuro */
+            box-shadow: 0 0 10px #ff0000;
+            color: #000000;
+        }
+        /* Proyectos */
+        .project-card {
+            background-color: #1a1a1a;
+            border: 1px solid #00ff00; /* Verde neon */
+            box-shadow: 0 0 10px #00ff00;
+            color: #ffffff;
+        }
+        body.light-mode .project-card {
+            background-color: #ffffff;
+            border: 1px solid #008000; /* Verde oscuro */
+            box-shadow: 0 0 10px #008000;
+            color: #000000;
+        }
+        .project-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .filter-btn {
+            background-color: #00ffff;
+            color: #000000;
+            margin: 5px;
+        }
+        body.light-mode .filter-btn {
+            background-color: #0000ff;
+            color: #ffffff;
+        }
+        /* Experiencia */
+        .exp-card {
+            background-color: #1a1a1a;
+            border: 1px solid #ff00ff; /* Magenta neon */
+            box-shadow: 0 0 10px #ff00ff;
+            color: #ffffff;
+            max-width: 400px;
+        }
+        body.light-mode .exp-card {
+            background-color: #ffffff;
+            border: 1px solid #800080; /* Púrpura oscuro */
+            box-shadow: 0 0 10px #800080;
+            color: #000000;
+        }
+        .exp-img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+        /* Footer */
+        .footer {
+            background-color: #0a0a0a;
+            color: #00ffff;
+            padding: 20px 0;
+            text-align: center;
+        }
+        body.light-mode .footer {
+            background-color: #f0f0f0;
+            color: #0000ff;
+        }
+        .footer a {
+            color: #ffff00; /* Amarillo neon */
+            margin: 0 10px;
+        }
+        body.light-mode .footer a {
+            color: #ff0000; /* Rojo oscuro */
+        }
+        .btn-top {
+            background-color: #00ff00;
+            color: #000000;
+        }
+        body.light-mode .btn-top {
+            background-color: #008000;
+            color: #ffffff;
+        }
+        /* Efectos ciberpunk */
+        .neon-glow {
+            text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff;
+        }
+        body.light-mode .neon-glow {
+            text-shadow: 0 0 5px #0000ff, 0 0 10px #0000ff;
+        }
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 50px 0;
+            }
+            .hero img {
+                width: 150px;
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+<body class="dark-mode">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand neon-glow" href="#">Portafolio Ciberpunk</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#hero">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#stack">Stack</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#projects">Proyectos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#experience">Experiencia</a>
+                    </li>
+                    <li class="nav-item">
+                        <button class="btn btn-toggle-mode" id="toggleMode">Modo Light</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="container">
+            <img src="https://lh3.googleusercontent.com/gg-dl/ABS2GSlmlmxaBlYlm4n3b3d4fLExyqluuKMhm077mEc7yh6wjn9u-bIqT0rbtK85Ll4LXz4SsMeezKCEDN1GEpqm5JDNJtHnfIoneISWIfexgCpQyxv9aHbo_-yqog09zzWt8vBivJE1x4TSWZwGXjng35tsa59XE84_ZemWnl-SmawmHZArzA=s1024-rj" alt="Foto de Perfil">
+            <h1 class="neon-glow">Karen Annelys</h1>
+            <p>Desarrolladora Frontend experta en UI/UX minimalista y moderno. Apasionada por el diseño ciberpunk y tecnologías futuristas. 🚀</p>
+        </div>
+    </section>
+
+    <!-- Stack Tecnológico -->
+    <section id="stack" class="py-5">
+        <div class="container">
+            <h2 class="text-center neon-glow">Stack Tecnológico</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-3 m-2">
+                    <div class="card stack-card">
+                        <div class="card-body text-center">
+                            <i class="fas fa-code fa-3x neon-glow"></i>
+                            <h5>HTML5 & CSS3</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 m-2">
+                    <div class="card stack-card">
+                        <div class="card-body text-center">
+                            <i class="fas fa-bolt fa-3x neon-glow"></i>
+                            <h5>JavaScript</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 m-2">
+                    <div class="card stack-card">
+                        <div class="card-body text-center">
+                            <i class="fab fa-bootstrap fa-3x neon-glow"></i>
+                            <h5>Bootstrap</h5>
+                        </div>
+                    </div>
+                </div>
+                <!-- Agrega más si es necesario -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Proyectos -->
+    <section id="projects" class="py-5 bg-dark">
+        <div class="container">
+            <h2 class="text-center neon-glow">Proyectos</h2>
+            <div class="text-center mb-4">
+                <button class="btn filter-btn" data-filter="all">Todos</button>
+                <button class="btn filter-btn" data-filter="web">Web</button>
+                <button class="btn filter-btn" data-filter="app">App</button>
+                <button class="btn filter-btn" data-filter="design">Diseño</button>
+            </div>
+            <div class="row" id="projectGrid">
+                <!-- Web Projects -->
+                <div class="col-md-4 mb-4 project-item web">
+                    <div class="card project-card">
+                        <img src="https://png.pngtree.com/thumb_back/fw800/background/20251117/pngtree-futuristic-cyberpunk-ui-dashboard-with-neon-purple-and-blue-glow-image_20313753.webp" class="project-img" alt="Web 1">
+                        <div class="card-body">
+                            <h5>Proyecto Web 1 🌐</h5>
+                            <p>Descripción ciberpunk futurista.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4 project-item web">
+                    <div class="card project-card">
+                        <img src="https://thumbs.dreamstime.com/b/aesthetic-background-abstract-glowing-neon-lines-pink-magenta-blue-colors-futuristic-design-light-effects-vibrant-367433431.jpg" class="project-img" alt="Web 2">
+                        <div class="card-body">
+                            <h5>Proyecto Web 2 🌐</h5>
+                            <p>Descripción ciberpunk futurista.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4 project-item web">
+                    <div class="card project-card">
+                        <img src="https://blog.logrocket.com/wp-content/uploads/2025/03/Cyberpunk-Neon-GitHub-repository.png?w=895" class="project-img" alt="Web 3">
+                        <div class="card-body">
+                            <h5>Proyecto Web 3 🌐</h5>
+                            <p>Descripción ciberpunk futurista.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- App Projects -->
+                <div class="col-md-4 mb-4 project-item app">
+                    <div class="card project-card">
+                        <img src="https://www.shutterstock.com/image-vector/3d-smartphone-neon-light-on-260nw-2704548753.jpg" class="project-img" alt="App 1">
+                        <div class="card-body">
+                            <h5>Proyecto App 1 📱</h5>
+                            <p>Descripción ciberpunk futurista.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4 project-item app">
+                    <div class="card project-card">
+                        <img src="https://www.shutterstock.com/image-vector/neon-blue-light-smartphone-mock-260nw-2483386083.jpg" class="project-img" alt="App 2">
+                        <div class="card-body">
+                            <h5>Proyecto App 2 📱</h5>
+                            <p>Descripción ciberpunk futurista.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4 project-item app">
+                    <div class="card project-card">
+                        <img src="https://thumbs.dreamstime.com/b/smartphone-glowing-neon-blue-light-dark-background-suitable-diverse-creative-needs-373201344.jpg" class="project-img" alt="App 3">
+                        <div class="card-body">
+                            <h5>Proyecto App 3 📱</h5>
+                            <p>Descripción ciberpunk futurista.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Design Projects -->
+                <div class="col-md-4 mb-4 project-item design">
+                    <div class="card project-card">
+                        <img src="https://t4.ftcdn.net/jpg/10/55/90/67/360_F_1055906784_2FaAZPVccADAZztWphUVHgMS1bh1yr88.jpg" class="project-img" alt="Diseño 1">
+                        <div class="card-body">
+                            <h5>Proyecto Diseño 1 🎨</h5>
+                            <p>Descripción ciberpunk futurista.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4 project-item design">
+                    <div class="card project-card">
+                        <img src="https://www.shutterstock.com/image-vector/abstract-glitch-effect-background-digital-600nw-2600145807.jpg" class="project-img" alt="Diseño 2">
+                        <div class="card-body">
+                            <h5>Proyecto Diseño 2 🎨</h5>
+                            <p>Descripción ciberpunk futurista.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4 project-item design">
+                    <div class="card project-card">
+                        <img src="https://www.shutterstock.com/image-vector/colorful-glitch-effect-texture-vector-600nw-2702745575.jpg" class="project-img" alt="Diseño 3">
+                        <div class="card-body">
+                            <h5>Proyecto Diseño 3 🎨</h5>
+                            <p>Descripción ciberpunk futurista.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Experiencia Laboral -->
+    <section id="experience" class="py-5">
+        <div class="container">
+            <h2 class="text-center neon-glow">Experiencia Laboral</h2>
+            <div class="row justify-content-center">
+                <!-- Experiencia 1 -->
+                <div class="col-md-4 mb-4 d-flex justify-content-center">
+                    <div class="card exp-card">
+                        <img src="https://www.shutterstock.com/image-vector/abstract-futuristic-blue-background-glowing-600nw-2470107337.jpg" class="exp-img" alt="Experiencia 1">
+                        <div class="card-body">
+                            <h5>Trabajo 1 💼</h5>
+                            <p>Descripción de experiencia ciberpunk.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Experiencia 2 -->
+                <div class="col-md-4 mb-4 d-flex justify-content-center">
+                    <div class="card exp-card">
+                        <img src="https://www.shutterstock.com/image-vector/digital-technology-metaverse-neon-blue-600nw-2376531221.jpg" class="exp-img" alt="Experiencia 2">
+                        <div class="card-body">
+                            <h5>Trabajo 2 💼</h5>
+                            <p>Descripción de experiencia ciberpunk.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Experiencia 3 -->
+                <div class="col-md-4 mb-4 d-flex justify-content-center">
+                    <div class="card exp-card">
+                        <img src="https://thumbs.dreamstime.com/b/electrifying-neon-cyberpunk-gaming-intro-futuristic-black-blue-abstract-background-design-youtube-games-experience-380845135.jpg" class="exp-img" alt="Experiencia 3">
+                        <div class="card-body">
+                            <h5>Trabajo 3 💼</h5>
+                            <p>Descripción de experiencia ciberpunk.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <a href="#"><i class="fab fa-twitter fa-2x"></i></a>
+            <a href="#"><i class="fab fa-linkedin fa-2x"></i></a>
+            <a href="#"><i class="fab fa-github fa-2x"></i></a>
+            <p class="mt-3">© 2026 Karen Annelys. Todos los derechos reservados. 🌃</p>
+            <button class="btn btn-top mt-2" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">Volver Arriba ↑</button>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script>
+        // Toggle Mode
+        const toggleBtn = document.getElementById('toggleMode');
+        const body = document.body;
+        toggleBtn.addEventListener('click', () => {
+            if (body.classList.contains('dark-mode')) {
+                body.classList.remove('dark-mode');
+                body.classList.add('light-mode');
+                toggleBtn.textContent = 'Modo Dark';
+            } else {
+                body.classList.remove('light-mode');
+                body.classList.add('dark-mode');
+                toggleBtn.textContent = 'Modo Light';
+            }
+        });
+
+        // Filtros de Proyectos
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const projectItems = document.querySelectorAll('.project-item');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const filter = btn.getAttribute('data-filter');
+                projectItems.forEach(item => {
+                    if (filter === 'all' || item.classList.contains(filter)) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
